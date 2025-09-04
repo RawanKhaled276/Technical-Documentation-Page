@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CSS Fundamentals — Technical Documentation</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <nav id="navbar">
+    <header>CSS Fundamentals</header>
+    <a class="nav-link" href="#Introduction">Introduction</a>
+    <a class="nav-link" href="#Selectors">Selectors</a>
+    <a class="nav-link" href="#Box_Model">Box Model</a>
+    <a class="nav-link" href="#Flexbox">Flexbox</a>
+    <a class="nav-link" href="#Grid">Grid</a>
+    <a class="nav-link" href="#Typography">Typography</a>
+    <a class="nav-link" href="#Color_and_Backgrounds">Color and Backgrounds</a>
+    <a class="nav-link" href="#Responsive_Design">Responsive Design</a>
+  </nav>
+
+  <main id="main-doc">
+    <section class="main-section" id="Introduction">
+      <header>Introduction</header>
+      <p>CSS (Cascading Style Sheets) controls how HTML content looks. It defines colors, spacing, layout, and typography across the web.</p>
+      <p>In this documentation, you'll learn core CSS concepts with examples you can copy and run.</p>
+      <p>CSS can be applied inline, embedded in the document, or linked as an external stylesheet.</p>
+      <pre><code>/* Link a stylesheet */
+&lt;link rel="stylesheet" href="styles.css"&gt;</code></pre>
+      <ul>
+        <li>Separation of concerns: HTML for structure, CSS for style</li>
+        <li>Cascade and specificity control which rules win</li>
+        <li>Responsive design adapts to different screens</li>
+      </ul>
+    </section>
+
+    <section class="main-section" id="Selectors">
+      <header>Selectors</header>
+      <p>Selectors target elements to style. They can be simple or complex.</p>
+      <pre><code>p { line-height: 1.7; }
+.highlight { background: yellow; }
+#hero { padding: 2rem; }</code></pre>
+      <pre><code>a[target="_blank"] { text-decoration: underline; }
+a:hover { text-decoration: none; }</code></pre>
+      <ul>
+        <li>Element: h1, p, button</li>
+        <li>Class: .card, .btn</li>
+        <li>ID: #navbar</li>
+        <li>Pseudo-class: :hover, :focus</li>
+      </ul>
+    </section>
+
+    <section class="main-section" id="Box_Model">
+      <header>Box Model</header>
+      <p>Every element is a rectangle composed of content, padding, border, and margin.</p>
+      <pre><code>*, *::before, *::after { box-sizing: border-box; }
+.card {
+  width: 300px;
+  padding: 1rem;
+  border: 1px solid #ddd;
+  margin: 1rem auto;
+}</code></pre>
+      <ul>
+        <li>Content box: width excludes padding/border</li>
+        <li>Border box: width includes padding/border</li>
+      </ul>
+    </section>
+
+    <section class="main-section" id="Flexbox">
+      <header>Flexbox</header>
+      <p>Flexbox is a layout system for aligning items horizontally or vertically.</p>
+      <pre><code>.toolbar {
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+  align-items: center;
+}</code></pre>
+      <pre><code>.item { flex: 1 1 200px; }</code></pre>
+      <ul>
+        <li>Control axis with flex-direction</li>
+        <li>Align with justify-content</li>
+        <li>Wrap with flex-wrap</li>
+      </ul>
+    </section>
+
+    <section class="main-section" id="Grid">
+      <header>Grid</header>
+      <p>CSS Grid is a two-dimensional layout system.</p>
+      <pre><code>.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+}</code></pre>
+      <pre><code>.gallery__item--wide { grid-column: span 2; }</code></pre>
+    </section>
+
+    <section class="main-section" id="Typography">
+      <header>Typography</header>
+      <p>Good typography improves readability and hierarchy.</p>
+      <pre><code>html { font-size: 16px; }
+h1 { font-size: 2rem; }
+p  { font-size: 1rem; line-height: 1.7; }</code></pre>
+    </section>
+
+    <section class="main-section" id="Color_and_Backgrounds">
+      <header>Color and Backgrounds</header>
+      <p>Colors set mood and accessibility.</p>
+      <pre><code>.hero {
+  background:
+    linear-gradient(to bottom, rgba(0,0,0,.4), rgba(0,0,0,.4)),
+    url('hero.jpg') center/cover no-repeat;
+  color: white;
+  padding: 4rem 2rem;
+}</code></pre>
+      <ul>
+        <li>Meet WCAG contrast guidelines</li>
+        <li>Use system colors for theming</li>
+      </ul>
+    </section>
+
+    <section class="main-section" id="Responsive_Design">
+      <header>Responsive Design</header>
+      <p>Responsive design adapts layouts using media queries.</p>
+      <pre><code>.card { padding: 1rem; }
+@media (min-width: 768px) {
+  .card { padding: 2rem; }
+}</code></pre>
+    </section>
+  </main>
+</body>
+</html>
