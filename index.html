@@ -4,9 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>CSS Fundamentals — Technical Documentation</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;1,9..144,300&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
 </head>
-<body>
+<!--<body>
   <nav id="navbar">
     <header>CSS Fundamentals</header>
     <a class="nav-link" href="#Introduction">Introduction</a>
@@ -126,6 +129,168 @@ p  { font-size: 1rem; line-height: 1.7; }</code></pre>
   .card { padding: 2rem; }
 }</code></pre>
     </section>
+  </main>-->
+  <body>
+ 
+  <!-- Hamburger toggle button (mobile only) -->
+  <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+ 
+  <!-- Overlay for mobile -->
+  <div class="nav-overlay" id="navOverlay"></div>
+ 
+  <nav id="navbar">
+    <header>
+      <span class="nav-logo">CSS</span>
+      <span class="nav-subtitle">Fundamentals</span>
+    </header>
+    <a class="nav-link" href="#Introduction">Introduction</a>
+    <a class="nav-link" href="#Selectors">Selectors</a>
+    <a class="nav-link" href="#Box_Model">Box Model</a>
+    <a class="nav-link" href="#Flexbox">Flexbox</a>
+    <a class="nav-link" href="#Grid">Grid</a>
+    <a class="nav-link" href="#Typography">Typography</a>
+    <a class="nav-link" href="#Color_and_Backgrounds">Color &amp; Backgrounds</a>
+    <a class="nav-link" href="#Responsive_Design">Responsive Design</a>
+  </nav>
+ 
+  <main id="main-doc">
+ 
+    <section class="main-section" id="Introduction">
+      <header>Introduction</header>
+      <p>CSS (Cascading Style Sheets) controls how HTML content looks. It defines colors, spacing, layout, and typography across the web.</p>
+      <p>In this documentation, you'll learn core CSS concepts with examples you can copy and run.</p>
+      <p>CSS can be applied inline, embedded in the document, or linked as an external stylesheet.</p>
+      <div class="callout tip">
+        <span class="callout-icon">💡</span>
+        <div><strong>Tip:</strong> External stylesheets are preferred — they keep style separate from structure and are cached by the browser for faster repeat loads.</div>
+      </div>
+      <pre><code><span class="cm">/* Link a stylesheet */</span>
+<span class="tag">&lt;link</span> <span class="attr">rel</span>=<span class="str">"stylesheet"</span> <span class="attr">href</span>=<span class="str">"styles.css"</span><span class="tag">&gt;</span></code></pre>
+      <ul>
+        <li>Separation of concerns: HTML for structure, CSS for style</li>
+        <li>Cascade and specificity control which rules win</li>
+        <li>Responsive design adapts to different screens</li>
+      </ul>
+    </section>
+ 
+    <section class="main-section" id="Selectors">
+      <header>Selectors</header>
+      <p>Selectors target elements to style. They can be simple or complex, matching by tag name, class, ID, attribute, or state.</p>
+      <pre><code><span class="sel">p</span> { <span class="prop">line-height</span>: <span class="val">1.7</span>; }
+<span class="sel">.highlight</span> { <span class="prop">background</span>: <span class="val">yellow</span>; }
+<span class="sel">#hero</span> { <span class="prop">padding</span>: <span class="val">2rem</span>; }</code></pre>
+      <pre><code><span class="sel">a[target="_blank"]</span> { <span class="prop">text-decoration</span>: <span class="val">underline</span>; }
+<span class="sel">a:hover</span> { <span class="prop">text-decoration</span>: <span class="val">none</span>; }</code></pre>
+      <ul>
+        <li>Element: <code>h1</code>, <code>p</code>, <code>button</code></li>
+        <li>Class: <code>.card</code>, <code>.btn</code></li>
+        <li>ID: <code>#navbar</code></li>
+        <li>Pseudo-class: <code>:hover</code>, <code>:focus</code></li>
+      </ul>
+      <div class="callout note">
+        <span class="callout-icon">📌</span>
+        <div><strong>Note:</strong> Specificity determines which rules win when selectors conflict. IDs beat classes, classes beat element selectors.</div>
+      </div>
+    </section>
+ 
+    <section class="main-section" id="Box_Model">
+      <header>Box Model</header>
+      <p>Every element is a rectangle composed of content, padding, border, and margin. Understanding this model is fundamental to controlling layout precisely.</p>
+      <pre><code><span class="sel">*</span>, <span class="sel">*::before</span>, <span class="sel">*::after</span> { <span class="prop">box-sizing</span>: <span class="val">border-box</span>; }
+<span class="sel">.card</span> {
+  <span class="prop">width</span>: <span class="val">300px</span>;
+  <span class="prop">padding</span>: <span class="val">1rem</span>;
+  <span class="prop">border</span>: <span class="val">1px solid #ddd</span>;
+  <span class="prop">margin</span>: <span class="val">1rem auto</span>;
+}</code></pre>
+      <ul>
+        <li><strong>Content box:</strong> width excludes padding/border</li>
+        <li><strong>Border box:</strong> width includes padding/border — the preferred default</li>
+      </ul>
+    </section>
+ 
+    <section class="main-section" id="Flexbox">
+      <header>Flexbox</header>
+      <p>Flexbox is a one-dimensional layout system designed for aligning items along a single axis — horizontally or vertically with ease.</p>
+      <pre><code><span class="sel">.toolbar</span> {
+  <span class="prop">display</span>: <span class="val">flex</span>;
+  <span class="prop">gap</span>: <span class="val">1rem</span>;
+  <span class="prop">justify-content</span>: <span class="val">space-between</span>;
+  <span class="prop">align-items</span>: <span class="val">center</span>;
+}</code></pre>
+      <pre><code><span class="sel">.item</span> { <span class="prop">flex</span>: <span class="val">1 1 200px</span>; }</code></pre>
+      <ul>
+        <li>Control axis with <code>flex-direction</code></li>
+        <li>Align cross-axis with <code>align-items</code></li>
+        <li>Distribute space with <code>justify-content</code></li>
+        <li>Wrap overflow with <code>flex-wrap: wrap</code></li>
+      </ul>
+      <div class="callout tip">
+        <span class="callout-icon">💡</span>
+        <div><strong>Tip:</strong> Use <code>gap</code> instead of margins between flex children — it's cleaner and doesn't bleed on outer edges.</div>
+      </div>
+    </section>
+ 
+    <section class="main-section" id="Grid">
+      <header>Grid</header>
+      <p>CSS Grid is a two-dimensional layout system — perfect for page-level structure where you need control over both rows and columns simultaneously.</p>
+      <pre><code><span class="sel">.gallery</span> {
+  <span class="prop">display</span>: <span class="val">grid</span>;
+  <span class="prop">grid-template-columns</span>: <span class="val">repeat(auto-fit, minmax(220px, 1fr))</span>;
+  <span class="prop">gap</span>: <span class="val">1rem</span>;
+}</code></pre>
+      <pre><code><span class="sel">.gallery__item--wide</span> { <span class="prop">grid-column</span>: <span class="val">span 2</span>; }</code></pre>
+      <div class="callout note">
+        <span class="callout-icon">📌</span>
+        <div><strong>Note:</strong> Use Flexbox for component-level layout, Grid for page-level layout — they're designed to complement each other.</div>
+      </div>
+    </section>
+ 
+    <section class="main-section" id="Typography">
+      <header>Typography</header>
+      <p>Good typography improves readability, establishes visual hierarchy, and gives your design a distinctive personality. Start with a solid type scale.</p>
+      <pre><code><span class="sel">html</span> { <span class="prop">font-size</span>: <span class="val">16px</span>; }
+<span class="sel">h1</span> { <span class="prop">font-size</span>: <span class="val">2rem</span>; }
+<span class="sel">p</span>  { <span class="prop">font-size</span>: <span class="val">1rem</span>; <span class="prop">line-height</span>: <span class="val">1.7</span>; }</code></pre>
+      <ul>
+        <li>Keep body text between 16–18px for comfortable reading</li>
+        <li>Optimal line length is 60–75 characters per line</li>
+        <li>Use <code>rem</code> units so text scales with user preferences</li>
+      </ul>
+    </section>
+ 
+    <section class="main-section" id="Color_and_Backgrounds">
+      <header>Color and Backgrounds</header>
+      <p>Color sets mood, guides attention, and is critical for accessibility. Always verify contrast ratios against WCAG 2.1 guidelines before shipping.</p>
+      <pre><code><span class="sel">.hero</span> {
+  <span class="prop">background</span>:
+    <span class="val">linear-gradient(to bottom, rgba(0,0,0,.4), rgba(0,0,0,.4))</span>,
+    <span class="val">url('hero.jpg') center/cover no-repeat</span>;
+  <span class="prop">color</span>: <span class="val">white</span>;
+  <span class="prop">padding</span>: <span class="val">4rem 2rem</span>;
+}</code></pre>
+      <ul>
+        <li>Meet WCAG contrast guidelines — aim for 4.5:1 minimum</li>
+        <li>Use CSS custom properties for consistent theming</li>
+        <li>Support both light and dark modes with <code>prefers-color-scheme</code></li>
+      </ul>
+    </section>
+ 
+    <section class="main-section" id="Responsive_Design">
+      <header>Responsive Design</header>
+      <p>Responsive design ensures your site works across all screen sizes using fluid layouts, flexible images, and strategic media queries.</p>
+      <pre><code><span class="sel">.card</span> { <span class="prop">padding</span>: <span class="val">1rem</span>; }
+<span class="cm">@media (min-width: 768px)</span> {
+  <span class="sel">.card</span> { <span class="prop">padding</span>: <span class="val">2rem</span>; }
+}</code></pre>
+      <div class="callout tip">
+        <span class="callout-icon">💡</span>
+        <div><strong>Tip:</strong> Design mobile-first — start with the smallest layout, then add <code>min-width</code> breakpoints to enhance for larger screens.</div>
+      </div>
+    </section>
   </main>
+  <script src="script.js"></script>
 </body>
 </html>
